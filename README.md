@@ -31,6 +31,7 @@ The assumed use case in `in` is cache npm package into private registry.
 * `email`: *Required.* npm registry login email.
 * `path`: *Required.* Path to the package to be published. (including `package.json`) 
 * `tag`: *Optional.* package tag.
+* `tag_file`: *Optional.* Path to the file in which to read the package tag from.
 
 ## Pipeline example
 

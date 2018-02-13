@@ -1,6 +1,10 @@
 package out
 
 import (
+	"fmt"
+	"io/ioutil"
+	"os"
+
 	"github.com/idahobean/npm-resource"
 	"github.com/idahobean/npm-resource/npm"
 )
@@ -26,9 +30,14 @@ func (command *Command) Run(request Request) (Response, error) {
 		return Response{}, err
 	}
 
+	tag, err := tagFrom(request.Params)
+	if err != nil {
+		return Response{}, err
+	}
+
 	err = command.packageManager.Publish(
 		request.Params.Path,
-		request.Params.Tag,
+		tag,
 		request.Source.Registry,
 	)
 	if err != nil {
@@ -65,4 +74,17 @@ func (command *Command) Run(request Request) (Response, error) {
 			},
 		},
 	}, nil
+}
+
+func tagFrom(params Params) (string, error) {
+	if len(params.TagFile) == 0 {
+		return params.Tag, nil
+	}
+
+	t, err := ioutil.ReadFile(fmt.Sprintf("%s/%s", os.Args[1], params.TagFile))
+	if err != nil {
+		return "", err
+	}
+
+	return string(t), nil
 }

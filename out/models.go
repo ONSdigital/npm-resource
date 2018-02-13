@@ -13,6 +13,7 @@ type Params struct {
 	Email    string `json:"email"`
 	Path     string `json:"path"`
 	Tag      string `json:"tag"`
+	TagFile  string `json:"tag_file"`
 }
 
 type Response struct {
