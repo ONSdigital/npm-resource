@@ -12,7 +12,7 @@ type PackageManager interface {
 	Logout(registry string) error
 	View(packageName string, registry string) (*PackageInfo, error)
 	Install(packageName string, registry string) error
-	Publish(path string, tag string, registry string) error
+	Publish(path string, tag string, registry string, unsafe bool) error
 }
 
 type NPM struct{}
@@ -82,7 +82,7 @@ func (npm *NPM) Install(packageName string, registry string) error {
 	return npm.npm(args...).Run()
 }
 
-func (npm *NPM) Publish(path string, tag string, registry string) error {
+func (npm *NPM) Publish(path string, tag string, registry string, unsafe bool) error {
 	args := []string{"publish", path}
 
 	if tag != "" {
@@ -90,6 +90,9 @@ func (npm *NPM) Publish(path string, tag string, registry string) error {
 	}
 	if registry != "" {
 		args = append(args, "--registry", registry)
+	}
+	if unsafe {
+		args = append(args, "--unsafe-perm")
 	}
 
 	return npm.npm(args...).Run()

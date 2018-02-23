@@ -39,6 +39,7 @@ func (command *Command) Run(request Request) (Response, error) {
 		request.Params.Path,
 		tag,
 		request.Source.Registry,
+		request.Params.Unsafe,
 	)
 	if err != nil {
 		return Response{}, err

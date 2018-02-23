@@ -32,6 +32,7 @@ The assumed use case in `in` is cache npm package into private registry.
 * `path`: *Required.* Path to the package to be published. (including `package.json`) 
 * `tag`: *Optional.* package tag.
 * `tag_file`: *Optional.* Path to the file in which to read the package tag from.
+* `unsafe`: *Optional.* Run npm publish with `--unsafe-perm`.
 
 ## Pipeline example
 

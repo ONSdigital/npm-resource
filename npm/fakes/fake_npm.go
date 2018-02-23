@@ -335,7 +335,7 @@ func (fake *FakeNPM) VersionReturnsOnCall(i int, result1 error) {
 	}{result1}
 }
 
-func (fake *FakeNPM) Publish(path string, tag string, registry string) error {
+func (fake *FakeNPM) Publish(path string, tag string, registry string, unsafe bool) error {
 	fake.publishMutex.Lock()
 	ret, specificReturn := fake.publishReturnsOnCall[len(fake.publishArgsForCall)]
 	fake.publishArgsForCall = append(fake.publishArgsForCall, struct {

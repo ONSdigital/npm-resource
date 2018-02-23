@@ -14,6 +14,7 @@ type Params struct {
 	Path     string `json:"path"`
 	Tag      string `json:"tag"`
 	TagFile  string `json:"tag_file"`
+	Unsafe   bool   `json:"unsafe"`
 }
 
 type Response struct {
