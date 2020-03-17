@@ -1,5 +1,7 @@
-FROM lloydg/npm-resource-base
+FROM node:alpine
 
-ADD built-check /opt/resource/check
-ADD built-out /opt/resource/out
-ADD built-in /opt/resource/in
+RUN npm install npm-cli-login -g
+
+ADD build/built-check /opt/resource/check
+ADD build/built-out /opt/resource/out
+ADD build/built-in /opt/resource/in
